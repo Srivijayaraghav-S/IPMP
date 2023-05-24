@@ -1,0 +1,35 @@
+class Solution{
+    public:
+    vector<long long int> twoOddNum(long long int Arr[], long long int N)  
+    {
+        // code here
+        vector<long long int> v;
+        long long int Xor=Arr[0];
+        for(long long int i=1;i<N;i++)
+        {
+            Xor^=Arr[i];
+        }
+        long long int x=0,y=0;
+        long long int s=Xor&~(Xor-1);
+        for(long long int i=0;i<N;i++)
+        {
+            if(s&Arr[i])
+            {
+                x^=Arr[i];
+            }
+            else
+            {
+                y^=Arr[i];
+            }
+        }
+        if(x>y)
+        {
+            v.push_back(x);
+            v.push_back(y);
+            return v;
+        }
+        v.push_back(y);
+        v.push_back(x);
+        return v;
+    }
+};

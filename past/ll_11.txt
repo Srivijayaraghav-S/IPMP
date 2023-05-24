@@ -1,0 +1,40 @@
+// structure of the node is as follows
+
+struct node
+{
+	int data;
+	struct node* next;
+	
+	node(int x){
+	    data = x;
+	    next = NULL;
+	}
+	
+};
+
+*/
+struct Node* makeUnion(struct Node* head1, struct Node* head2)
+{
+    // code here
+    set<int> s;
+    set<int>::iterator it;
+    while(head1)
+    {
+        s.insert(head1->data);
+        head1=head1->next;
+    }
+    while(head2)
+    {
+        s.insert(head2->data);
+        head2=head2->next;
+    }
+    it=s.begin();
+    struct Node *p=new Node(*it);
+    struct Node *q=p;
+    for(++it;it!=s.end();it++)
+    {
+        q->next=new Node(*it);
+        q=q->next;
+    }
+    return p;
+}
